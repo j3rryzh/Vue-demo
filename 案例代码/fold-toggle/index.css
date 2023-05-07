@@ -1,0 +1,99 @@
+body {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background: url("https://i.loli.net/2020/09/01/4ejZ7JUt3lOkEyB.jpg") 0 0 /
+    cover no-repeat;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.time {
+  color: #848080;
+}
+
+.notice {
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  cursor: pointer;
+}
+
+.item {
+  position: relative;
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  -webkit-backdrop-filter: saturate(130%) blur(20px);
+  backdrop-filter: saturate(130%) blur(20px);
+  transition: 0.6s var(--ease-out-cubic);
+}
+
+.item:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: transparent;
+  transform: translateY(0.75rem) translateZ(-3rem);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.item:nth-child(3) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  color: transparent;
+  transform: translateY(1.5rem) translateZ(-6rem);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.item:nth-child(4) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -3;
+  color: transparent;
+  transform: translateY(2.25rem) translateZ(-9rem);
+  box-shadow: none;
+}
+
+.notice.unfolded .item {
+  color: black;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* .notice.unfolded .item .more {
+  display: none;
+} */
+
+.notice.unfolded .item:nth-child(2) {
+  transform: translateY(calc(100% + 0.5rem));
+}
+
+.notice.unfolded .item:nth-child(3) {
+  transform: translateY(calc(200% + 1rem));
+}
+
+.notice.unfolded .item:nth-child(4) {
+  transform: translateY(calc(300% + 1.5rem));
+}
+
+.container {
+  position: relative;
+  top: -8rem;
+}

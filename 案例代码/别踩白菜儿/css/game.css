@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: linear-gradient(to right, #fad0c4 0%, #ffd1ff 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game_box {
+  height: 75vh;
+  width: 400px;
+  margin: 100px auto 0;
+  border-radius: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 400px;
+  height: 600px;
+  position: relative;
+  left: 0;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+#main {
+  width: 400px;
+  height: 600px;
+  top: -150px;
+  position: relative;
+}
+
+.score {
+  font-size: 23px;
+  color: #466cf5;
+}
+
+.curtain_start,
+.curtain_end {
+  width: 400px;
+  height: 600px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+}
+
+.curtain_start p,
+.curtain_end p {
+  color: #fff;
+  line-height: 35px;
+  font-size: 32px;
+  position: absolute;
+  top: 200px;
+  left: 120px;
+}
+
+.curtain_start div,
+.curtain_end span {
+  display: block;
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 50px;
+  position: absolute;
+  inset: 0;
+  margin: 0 auto;
+  top: 300px;
+  background: #13bb9a;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #f358f3;
+}
+
+.row {
+  width: 400px;
+  height: 150px;
+}
+
+.goal {
+  font-size: 17px;
+  color: pink;
+}
+
+.block {
+  width: 98px;
+  height: 148px;
+  float: left;
+  background: url("../image/白菜儿.webp") center no-repeat;
+  background-size: 100% 100%;
+}
+
+.black {
+  width: 98px;
+  height: 148px;
+  float: left;
+  background-color: black;
+  border: 1px solid rgb(106, 104, 104);
+  cursor: pointer;
+}

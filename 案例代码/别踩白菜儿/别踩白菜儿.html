@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/game.css" />
+    <script src="./js/game.js"></script>
+  </head>
+  <body>
+    <div class="game_box">
+      <p id="score" class="score">分数:0</p>
+      <div class="wrapper">
+        <div id="main"></div>
+        <!-- 开始界面 -->
+        <div class="curtain_start" id="curtain_start">
+          <p>别踩白菜儿</p>
+          <div id="start_game">Start Game</div>
+        </div>
+        <!-- 重新开始 -->
+        <div class="curtain_end" id="curtain_end" style="display: none">
+          <p>游戏结束😒</p>
+          <div class="goal">得分: 0</div>
+          <span id="again">重新开始</span>
+        </div>
+      </div>
+    </div>
+    <script>
+      const curtain_start = document.getElementById("curtain_start");
+      const main = document.getElementById("main");
+      const start = document.getElementById("start_game");
+      const again = document.getElementById("again");
+
+      var gamer = new Game(main); //创建游戏实例
+      gamer.HandleClick(); //点击监听
+
+      start.onclick = function () {
+        curtain_start.style.display = "none";
+        // 游戏开始
+        gamer.start();
+      };
+      again.onclick = function () {
+        curtain_end.style.display = "none";
+        // 游戏开始
+        gamer.again();
+      };
+    </script>
+  </body>
+</html>

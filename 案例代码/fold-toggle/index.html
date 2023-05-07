@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@alphardex/aqua.css@1.5.5/dist/aqua.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container w-72">
+      <ul class="notice">
+        <li class="item">
+          <div class="mb-1 flex justify-between text-xs">
+            <div>
+              <i class="fab fa-weixin text-success"></i>
+              <span>微信</span>
+            </div>
+            <div class="time">30分钟前</div>
+          </div>
+          <div class="text-sm font-bold">阿伟</div>
+          <div class="text-sm">记得带上会员卡</div>
+        </li>
+        <li class="item">
+          <div class="mb-1 flex justify-between text-xs">
+            <div>
+              <i class="fab fa-weixin text-success"></i>
+              <span>微信</span>
+            </div>
+            <div class="time">43分钟前</div>
+          </div>
+          <div class="text-sm font-bold">阿伟</div>
+          <div class="text-sm">今晚体验一波？</div>
+        </li>
+        <li class="item">
+          <div class="mb-1 flex justify-between text-xs">
+            <div>
+              <i class="fab fa-weixin text-success"></i>
+              <span>微信</span>
+            </div>
+            <div class="time">50分钟前</div>
+          </div>
+          <div class="text-sm font-bold">阿伟</div>
+          <div class="text-sm">听说还打折😍</div>
+        </li>
+        <li class="item">
+          <div class="mb-1 flex justify-between text-xs">
+            <div>
+              <i class="fab fa-weixin text-success"></i>
+              <span>微信</span>
+            </div>
+            <div class="time">1小时前</div>
+          </div>
+          <div class="text-sm font-bold">阿伟</div>
+          <div class="text-sm">好消息：隔壁白金瀚来新技师啦</div>
+        </li>
+      </ul>
+    </div>
+    <script>
+      const notices = document.querySelector(".notice");
+      const list = document.querySelectorAll(".item");
+      list.forEach((item) => {
+        item.addEventListener("click", () => {
+          notices.classList.toggle("unfolded");
+        });
+      });
+    </script>
+  </body>
+</html>

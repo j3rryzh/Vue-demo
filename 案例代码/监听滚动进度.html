@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .big_box {
+        height: 3000px;
+        width: 100%;
+      }
+      .progress {
+        position: fixed;
+        top: 0;
+        height: 7px;
+        background: rgb(56, 216, 237);
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+      }
+    </style>
+
+    <div class="progress"></div>
+    <div>
+      <div class="big_box"></div>
+    </div>
+
+    <script>
+      let flag = true;
+      window.addEventListener("scroll", () => {
+        if (flag) {
+          flag = false;
+          window.requestAnimationFrame(scrollWork);
+          setTimeout(() => (flag = true), 40);
+        }
+      });
+
+      function scrollWork() {
+        let pageHeight =
+          document.body.scrollHeight || document.documentElement.scrollHeight;
+
+        let screenHeight =
+          document.documentElement.clientHeight || document.body.clientHeight;
+
+        let scrollHigh = pageHeight - screenHeight;
+
+        let scrollTop =
+          document.documentElement.scrollTop || document.body.scrollTop;
+
+        let progress = document.querySelector(".progress");
+        progress.style.width = (scrollTop / scrollHigh) * 100 + "%";
+      }
+    </script>
+  </body>
+</html>

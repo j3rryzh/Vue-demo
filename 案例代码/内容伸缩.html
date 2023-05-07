@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="picture">
+      <input type="checkbox" />
+      <img
+        src="https://img1.baidu.com/it/u=413643897,2296924942&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+      />
+      <img
+        src="https://img0.baidu.com/it/u=3064749179,2564773691&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+      />
+      <img
+        src="https://img2.baidu.com/it/u=861863691,2776527252&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500"
+      />
+      <img
+        src="https://img0.baidu.com/it/u=2618126325,602096333&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+      />
+      <img
+        src="https://img2.baidu.com/it/u=2044833022,3762569909&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+      />
+      <img
+        src="https://img0.baidu.com/it/u=3578651405,3525734255&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+      />
+      <img
+        src="https://img0.baidu.com/it/u=1275095085,1961143463&fm=253&fmt=auto&app=120&f=JPEG?w=1280&h=800"
+      />
+      <img
+        src="https://img1.baidu.com/it/u=1546227440,2897989905&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"
+      />
+    </div>
+
+    <style>
+      :root {
+        --index: 1;
+        --size: 130px;
+        --bg: linear-gradient(#fff 0 0) no-repeat;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-content: center;
+        background-color: #000;
+      }
+
+      .picture {
+        display: grid;
+        gap: 5px;
+        position: relative;
+      }
+
+      .picture input {
+        position: absolute;
+        z-index: 2;
+        border-radius: 50%;
+        inset: calc(50% - var(--size) / 3);
+        cursor: pointer;
+        transition: 1.5s all;
+        background: var(--bg) 50%/60% 3px, var(--bg) 50%/3px 60%, #41e299;
+        appearance: none;
+      }
+
+      .picture img {
+        width: var(--size);
+        aspect-ratio: 1;
+        grid-area: 1/1;
+        border-radius: 50%;
+        object-fit: cover;
+        transform: scale(0.5);
+        background-color: #fff;
+        transition: 1s calc((var(--index) - 1) * 0.1s);
+      }
+
+      .picture > img:nth-last-of-type(1) {
+        --index: 1;
+      }
+      .picture > img:nth-last-of-type(2) {
+        --index: 2;
+      }
+
+      .picture > img:nth-last-of-type(3) {
+        --index: 3;
+      }
+      .picture > img:nth-last-of-type(4) {
+        --index: 4;
+      }
+      .picture > img:nth-last-of-type(5) {
+        --index: 5;
+      }
+
+      .picture > img:nth-last-of-type(6) {
+        --index: 6;
+      }
+
+      .picture > img:nth-last-of-type(7) {
+        --index: 7;
+      }
+
+      .picture > img:nth-last-of-type(8) {
+        --index: 8;
+      }
+
+      .picture > input:checked ~ img {
+        transform: rotate(calc(var(--index) * 360deg / 8))
+          translate(calc(1.5 * var(--size)))
+          rotate(calc(var(--index) * -360deg / 8));
+      }
+
+      .picture > input:checked {
+        transform: rotate(135deg);
+      }
+    </style>
+  </body>
+</html>

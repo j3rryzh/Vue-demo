@@ -1,0 +1,38 @@
+<script>
+  function monkeySort(arr) {
+    let sorted = false;
+    while (!sorted) {
+      sorted = true;
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > arr[i + 1]) {
+          sorted = false;
+          let j = Math.floor(Math.random() * arr.length);
+          let temp = arr[j];
+          arr[j] = arr[i];
+          arr[i] = temp;
+        }
+      }
+    }
+    return arr;
+  }
+
+  let arr = [222, 44, 1, 5, 33, 83, 0, 24, 5];
+  console.log(monkeySort(arr));
+
+  function monkeySort1(arr) {
+    let isSorted = arr.every(
+      (value, index, array) => !index || value >= array[index - 1]
+    );
+
+    while (!isSorted) {
+      arr.sort(() => Math.random() - 0.5);
+
+      isSorted = arr.every(
+        (value, index, array) => !index || value >= array[index - 1]
+      );
+    }
+    return arr;
+  }
+  let arr1 = [22, 144, 31, 125, 33, 83, 10, 24, 15];
+  console.log(monkeySort1(arr1));
+</script>

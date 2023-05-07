@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="lantern">
+      <div class="card"></div>
+    </div>
+
+    <style>
+      @property --rotate {
+        syntax: "<angle>";
+        initial-value: 125deg;
+        inherits: false;
+      }
+
+      body {
+        min-height: 100vh;
+        overflow: hidden;
+        background-color: black;
+        box-sizing: border-box;
+      }
+
+      .lantern {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card {
+        background-color: rgb(0, 0, 0);
+        height: var(--card-height);
+        padding: 3px;
+        position: relative;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 70vh;
+        width: 30vw;
+        cursor: pointer;
+      }
+
+      .card:hover::before {
+        animation: none;
+        opacity: 0;
+        transition: all 2s;
+      }
+
+      .card::before {
+        content: "";
+        width: 104%;
+        height: 102%;
+        border-radius: 10px;
+        background-image: linear-gradient(
+          var(--rotate),
+          #5ddcff,
+          #3c67e3 43%,
+          #4e00c2
+        );
+        position: absolute;
+        z-index: -1;
+        top: -1%;
+        left: -2%;
+        animation: spin 2.5s linear infinite;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        top: calc(var(--card-height) / 6);
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        transform: scale(0.8);
+        filter: blur(calc(--card-height) / 6);
+        background-image: linear-gradient(
+          var(--rotate),
+          #5ddcff,
+          #3c67e3 43%,
+          #4e00c2
+        );
+        opacity: 1%;
+        transition: opacity 0.5s;
+        animation: spin 2.5s linear inherit;
+      }
+
+      @keyframes spin {
+        0% {
+            --rotate:0deg;
+        }
+        20% {
+            --rotate:60deg;
+        }
+        40% {
+            --rotate:120deg;
+        }
+        60% {
+            --rotate:180deg;
+        }
+        80% {
+            --rotate:240deg;
+        }
+        100% {
+            --rotate:360deg;
+        }
+      }
+    </style>
+  </body>
+</html>
