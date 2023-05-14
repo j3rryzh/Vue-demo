@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let obj = {
+        name: "kiki",
+        age: 13,
+        height: 173,
+        money: 800000,
+      };
+      // 11.将对象的属性转化为数组
+      // 以及属性和对应的值转化为数组
+      console.log(Object.keys(obj));
+      console.log(Object.entries(obj));
+
+      // 12.过滤数组中值false的元素
+      const arr = [
+        1213,
+        null,
+        "234",
+        { age: 15 },
+        false,
+        "0",
+        undefined,
+        0,
+        883,
+      ];
+      const newArr = arr.filter(Boolean);
+      console.log(newArr);
+
+      // 13.数组去重
+      const unique = (arr) => [...new Set(arr)];
+      let nums = unique([1, 2, 3, 4, 52, 56, 2, 3, 2, 1, 4]);
+      console.log(nums);
+
+      // 14.获取数组中随机项
+      const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+      let randomTerm = randomItem([
+        1,
+        2,
+        3,
+        4,
+        5,
+        51,
+        ,
+        23,
+        99,
+        1,
+        54,
+        102,
+        ,
+        52,
+        207,
+      ]);
+
+      // 15.获取数组中的最大数
+      const maxNum = (arr, n = 1) => [...arr].sort((a, b) => b - a).slice(0, n);
+      let max = maxNum([4, 9, 5, 7, 2]);
+      // 或者
+      console.log(Math.max.apply(null, [4, 9, 5, 7, 2]));
+
+      // 16.获取数组中的最小数
+      const minNum = (arr, n = 1) => [...arr].sort((a, b) => a - b).slice(0, n);
+      let min = maxNum([4, 9, 5, 7, 2]);
+      // 或者
+      console.log(Math.min.apply(null, [4, 9, 5, 7, 2]));
+
+      // 17.快速实现一个长度为10,并且元素值相同的数组
+      let newarr = Array(10).fill(29);
+
+      // 18.优化多个条件的if语句
+      let x = "abc";
+      if (x === "abc" || x === "def" || x === "ghi" || x === "jkl") {
+      }
+
+      if (["abc", "def", "ghi", "jkl"].includes(x)) {
+      }
+
+      // 19.对两个数组取交集
+      const array1 = [1, 2, 3, 4];
+      const array2 = [2, 3, 4, 5];
+      //filter过滤器返回符合条件的值生成一个新数组
+      //includes数组方法，判断数组中是否有这个值，有的话返回true否则返回false
+      let arr3 = array1.filter((item) => array2.includes(item));
+      console.log(arr3); //[2,3,4]
+
+      //20. 数组中有则删除，没有则添加
+      const arr1 = [1, 2, 3, 4];
+      const processing = (num) => {
+        if (arr1.includes(num)) {
+          arr1.splice(arr1.indexOf(num), 1);
+        } else {
+          arr1.push(num);
+        }
+        console.log(arr1);
+      };
+      processing(3);
+    </script>
+  </body>
+</html>
