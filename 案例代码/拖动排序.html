@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      * {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        width: 600px;
+        margin: 100px auto;
+        /* display: flex; */
+      }
+
+      .ele {
+        width: 70%;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #999;
+        background: cadetblue;
+        margin-top: 2px;
+        border-radius: 10px;
+        padding-left: 10px;
+        color: white;
+        cursor: move;
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="container">
+      <li class="ele" draggable="true">第一名</li>
+      <li class="ele" draggable="true">第二名</li>
+      <li class="ele" draggable="true">第三名</li>
+      <li class="ele" draggable="true">第四名</li>
+    </ul>
+    <script>
+      var node = document.querySelector("#container");
+      var draging = null;
+      //使用事件委托，将li的事件委托给ul
+      node.ondragstart = function (event) {
+        //不能使用text，火狐浏览器会打开新标签页
+        event.dataTransfer.setData("te", event.target.innerText);
+        draging = event.target;
+      };
+      node.ondragover = function (event) {
+        //取消默认行为
+        event.preventDefault();
+        var target = event.target;
+        //因为dragover会发生在ul上，所以要判断是不是li
+        if (target.nodeName === "LI") {
+          if (target !== draging) {
+            //getBoundingClientRect()用于获取某个元素相对于视窗的位置集合
+            var targetRect = target.getBoundingClientRect();
+            var dragingRect = draging.getBoundingClientRect();
+            if (target) {
+              if (target.animated) {
+                return;
+              }
+            }
+            if (getIndex(draging) < getIndex(target)) {
+              //nextSibling 属性可返回某个元素之后紧跟的节点（处于同一树层级中）。
+              target.parentNode.insertBefore(draging, target.nextSibling);
+            } else {
+              target.parentNode.insertBefore(draging, target);
+            }
+            _animate(dragingRect, draging);
+            _animate(targetRect, target);
+          }
+        }
+      };
+      //获取元素在父元素中的index
+      function getIndex(el) {
+        var index = 0;
+
+        if (!el || !el.parentNode) {
+          return -1;
+        }
+        //previousElementSibling属性返回指定元素的前一个兄弟元素（相同节点树层中的前一个元素节点）。
+        while (el && (el = el.previousElementSibling)) {
+          index++;
+        }
+
+        return index;
+      }
+
+      function _animate(prevRect, target) {
+        var ms = 300;
+
+        if (ms) {
+          var currentRect = target.getBoundingClientRect();
+          //nodeType 属性返回以数字值返回指定节点的节点类型。1=元素节点  2=属性节点
+          if (prevRect.nodeType === 1) {
+            prevRect = prevRect.getBoundingClientRect();
+          }
+          styleEvent(target, "transition", "none");
+          styleEvent(
+            target,
+            "transform",
+            "translate3d(" +
+              (prevRect.left - currentRect.left) +
+              "px," +
+              (prevRect.top - currentRect.top) +
+              "px,0)"
+          );
+
+          target.offsetWidth; // 触发重绘
+          styleEvent(target, "transition", "all " + ms + "ms");
+          styleEvent(target, "transform", "translate3d(0,0,0)");
+
+          clearTimeout(target.animated);
+          target.animated = setTimeout(function () {
+            styleEvent(target, "transition", "");
+            styleEvent(target, "transform", "");
+            target.animated = false;
+          }, ms);
+        }
+      }
+      //给元素添加style
+      function styleEvent(el, prop, val) {
+        var style = el && el.style;
+
+        if (style) {
+          if (val === void 0) {
+            //使用DefaultView属性可以指定打开窗体时所用的视图
+            if (document.defaultView && document.defaultView.getComputedStyle) {
+              val = document.defaultView.getComputedStyle(el, "");
+            } else if (el.currentStyle) {
+              val = el.currentStyle;
+            }
+            return prop === void 0 ? val : val[prop];
+          } else {
+            if (!(prop in style)) {
+              prop = "-webkit-" + prop;
+            }
+            style[prop] = val + (typeof val === "string" ? "" : "px");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
