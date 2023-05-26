@@ -1,0 +1,126 @@
+<html>
+  <!-- <div id="content">
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column prop="date" label="日期" width="180">
+        </el-table-column>
+        <el-table-column prop="name" label="姓名" width="180">
+        </el-table-column>
+        <el-table-column prop="address" label="地址"> </el-table-column>
+      </el-table>
+    </div> -->
+    <!-- <el-button
+      type="primary"
+      size="small"
+      @click="exportPdf('#content', 'pdf文件')"
+      >导出pdf</el-button
+    > -->
+  <title>test</title>
+  <style>
+    .container {
+      top: 25%;
+      left: 30%;
+      position: absolute;
+      z-index: 99;
+    }
+    canvas {
+      background-color: #000;
+      border-radius: 10px;
+    }
+
+    .operate {
+      display: flex;
+      margin-top: 50px;
+      justify-content: center;
+    }
+
+    .reset_btn,
+    .save_btn {
+      height: 30px;
+      line-height: 30px;
+      width: 80px;
+      cursor: pointer;
+      text-align: center;
+      border-radius: 5px;
+    }
+
+    .reset_btn {
+      color: #fff;
+      margin-right: 30px;
+      background-color: #f56c6c;
+    }
+
+    .save_btn {
+      margin-right: 30px;
+      color: #fff;
+      background-color: #67c23a;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <canvas id="canvas" width="600px" height="400px"></canvas>
+      <div class="operate">
+        <div class="save_btn" onclick="handleSave()">保存</div>
+        <div class="reset_btn" onclick="handleReset()">重置</div>
+      </div>
+    </div>
+    <div id="exportImg"></div>
+  </body>
+  <script>
+    let endX;
+    let endY;
+    let flag = false;
+    const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+    const startX = canvas.getBoundingClientRect().left;
+    const startY = canvas.getBoundingClientRect().top;
+    let oldX = startX;
+    let oldY = startY;
+    context.fillStyle = "#000";
+    context.lineWidth = 4;
+    context.strokeStyle = "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+    canvas.addEventListener("mousedown", downEvent, false);
+    canvas.addEventListener("mousemove", drawEvent, false);
+    canvas.addEventListener("mouseup", upEvent, false);
+    // 鼠标按下事件
+    function downEvent(event) {
+      flag = true;
+      oldX = event.clientX - startX;
+      oldY = event.clientY - startY;
+      context.beginPath();
+    }
+    // 鼠标移动事件
+    function drawEvent() {
+      if (flag) {
+        endX = event.clientX - startX;
+        endY = event.clientY - startY;
+        context.moveTo(oldX, oldY);
+        context.lineTo(endX, endY);
+        context.stroke();
+        oldX = endX;
+        oldY = endY;
+      }
+    }
+    // 鼠标移出画板
+    function upEvent() {
+      flag = false;
+      context.closePath();
+    }
+    // 清空画板内容
+    function handleReset() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    // 保存 导出图片
+    function handleSave() {
+      canvas.toBlob((blob) => {
+        const date = Date.now().toString();
+        const link = document.createElement("a");
+        link.download = `${date}.png`;
+        link.href = URL.createObjectURL(blob);
+        link.click();
+        link.remove();
+      });
+    }
+  </script>
+</html>
