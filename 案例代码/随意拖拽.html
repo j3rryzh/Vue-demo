@@ -1,0 +1,80 @@
+<body>
+  <div class="content">
+    <div class="big_box"></div>
+    <div class="small"></div>
+    <div class="small"></div>
+    <div class="small"></div>
+    <div class="small"></div>
+  </div>
+</body>
+
+<style>
+  .big_box {
+    width: 220px;
+    height: 220px;
+    background-color: rgb(55, 248, 245);
+    margin: 50vh auto 0;
+    border-radius: 10px;
+  }
+
+  .small {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 30px;
+    top: 0;
+    background-color: rgb(34, 190, 238);
+    transition: height 300ms, width 300ms;
+    border-radius: 50%;
+  }
+
+  .small:nth-child(2) {
+    top: 200px;
+  }
+  .small:nth-child(3) {
+    top: 400px;
+  }
+  .small:nth-child(4) {
+    top: 600px;
+  }
+</style>
+
+<script>
+  let reactObject = document.getElementsByTagName("div")[0].getBoundingClientRect();
+  let smalls = document.querySelectorAll(".small");
+  var bigBox = document.querySelector(".big_box");
+  smalls.forEach((item) => {
+    item.onmousedown = function () {
+      let disX = event.pageX - item.offsetLeft;
+      let disY = event.pageY - item.offsetTop;
+      document.onmousemove = function () {
+        let disLeft = event.pageX - disX;
+        let disTop = event.pageY - disY;
+        var oTFrect = item.getBoundingClientRect();
+        var oMBrect = bigBox.getBoundingClientRect();
+
+        if (
+          oMBrect.left >= oTFrect.right ||
+          oMBrect.top >= oTFrect.bottom ||
+          oTFrect.left >= oMBrect.right ||
+          oMBrect.bottom <= oTFrect.top
+        ) {
+          bigBox.style.backgroundColor = "rgb(55,248,245)";
+          item.style.height = "120px";
+          item.style.width = "120px";
+        } else {
+          bigBox.style.backgroundColor = "yellow";
+          item.style.height = "40px";
+          item.style.width = "40px";
+        }
+
+        item.style.left = disLeft + "px";
+        item.style.top = disTop + "px";
+      };
+
+      document.onmouseup = function () {
+        document.onmousemove = document.onmouseup = null;
+      };
+    };
+  });
+</script>
