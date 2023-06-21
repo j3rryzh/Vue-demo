@@ -1,0 +1,121 @@
+body {
+  height: 500vh;
+  background-color: #000;
+}
+body p {
+  line-height: 30px;
+}
+
+video {
+  width: 55vw;
+  height: 45vh;
+}
+
+.text {
+  color: #fff;
+}
+
+.container {
+  top: 0;
+  width: 980px;
+  position: sticky;
+  text-align: center;
+  font-size: 21px;
+  font-weight: bold;
+  color: #6e6e73;
+  margin: 200px auto;
+}
+.container > div {
+  transition: all 1s linear;
+}
+.introduce1 {
+  width: 410px;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+}
+.introduce1.active {
+  opacity: 1;
+}
+.introduce2 {
+  position: absolute;
+  top: 354px;
+  left: 495px;
+  z-index: 2;
+  opacity: 0;
+}
+.introduce2 .line {
+  display: block;
+  height: 1px;
+  width: 429px;
+  clip-path: inset(0 0 0 100%);
+  background-color: #6e6e73;
+  transition: all 1s linear;
+}
+.introduce2 p {
+  position: relative;
+  left: 100px;
+  top: 50px;
+  width: 325px;
+  text-align: left;
+  transition: all 1s linear;
+}
+.introduce2.active {
+  opacity: 1;
+}
+.introduce2.active .line {
+  clip-path: inset(0 0 0 0);
+}
+.introduce2.active p {
+  top: 0;
+}
+.introduce3 {
+  position: absolute;
+  top: 480px;
+  left: 627px;
+  z-index: 2;
+  opacity: 0;
+}
+.introduce3 .line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  height: 1px;
+  width: 300px;
+  clip-path: inset(0 0 0 100%);
+  background-color: #6e6e73;
+  transform: rotate(90deg) translateX(-141px);
+  transform-origin: left;
+  transition: all 0.1s linear;
+}
+.introduce3 p {
+  position: relative;
+  top: 50px;
+  left: 30px;
+  width: 323px;
+  text-align: left;
+}
+.introduce3.active {
+  opacity: 1;
+}
+.introduce3.active .line {
+  clip-path: inset(0 0 0 0);
+}
+.introduce3.active p {
+  top: 0;
+}
+.introduce4 {
+  position: relative;
+  top: -70px;
+  width: 390px;
+  margin: 0 auto;
+  opacity: 0;
+}
+.introduce4.active {
+  opacity: 1;
+}
+
+.introduce4 p {
+  text-align: center;
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document</title>
+  </head>
+  <style>
+    @import url('./index.css');
+  </style>
+  <body>
+    <div class="container">
+      <video
+        src="./airpods.webm"
+        muted
+      ></video>
+      <div class="text introduce1">
+        新的U1 芯片可以让你精确查找充电盒，帮你准确定位它。你还可使用查找 app 近距离查找 AirPods
+        Pro，看看它藏在了哪里<sup>5</sup>。
+      </div>
+      <div class="text introduce2">
+        <div>
+            <span class="line"></span>
+        </div>
+        <p>
+           挂绳孔方便你将充电盒系在背包或手提包上，这样就能随手取用耳机，随时沉浸在美妙的声音里<sup>6</sup>。
+        </p>
+      </div>
+      <div class="text introduce3">
+        <span class="line"></span>
+        <p>
+         内置扬声器可以播放声音来帮你轻松定位充电盒，还有全新的铃音，提示你电池电量低或是配对完成。
+        </span>
+      </div>
+      <div class="text introduce4">
+        <p>
+          AirPods Pro 和 MagSafe 充电盒都具备IPX4 级别抗汗抗水性能<sup>7</sup>
+        </p>
+      </div>
+    </div>
+    <script>
+      let num = 0;  
+      // let  playbackConst = 400;
+      // const setHeight = document.getElementById("set-height");
+       const video = document.querySelector("video");
+
+      function scrollFn() {
+        let num = window.pageYOffset / 400;
+        video.currentTime = num;
+        window.requestAnimationFrame(scrollFn);
+      }
+      window.requestAnimationFrame(scrollFn);
+      function updateEvent(e) {
+        let timer = e.target.currentTime;
+        console.log(timer)
+        if (timer < 0.2) {
+          document.querySelector(".introduce1").classList.add("active");
+        } else {
+          document.querySelector(".introduce1").classList.remove("active");
+        }
+
+        if (timer > 2 && timer < 3.2) {
+          document.querySelector(".introduce2").classList.add("active");
+        }  else {
+          document.querySelector(".introduce2").classList.remove("active");
+        }
+        
+        if (timer > 4 && timer < 4.8) {
+          document.querySelector(".introduce3").classList.add("active");
+        }  else {
+          document.querySelector(".introduce3").classList.remove("active");
+        }
+
+        if (timer > 4.8) {
+          document.querySelector(".introduce4").classList.add("active");
+        }  else {
+          document.querySelector(".introduce4").classList.remove("active");
+        }
+      }
+
+      window.addEventListener('scroll',() => {
+          video.addEventListener("timeupdate", updateEvent);
+      })
+
+    let top1 = 0;
+    let top2 = 0;
+    let timeout = null; // 定时器 
+    
+    // scroll监听
+    document.onscroll = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(stopScroll, 500);
+      top1 = document.documentElement.scrollTop || document.body.scrollTop;
+    }
+    
+    function stopScroll() {
+      top2 = document.documentElement.scrollTop || document.body.scrollTop;
+      if(top2 == top1){
+        video.removeEventListener('timeupdate',updateEvent)
+      }
+    }
+
+    </script>
+  </body>
+</html>
