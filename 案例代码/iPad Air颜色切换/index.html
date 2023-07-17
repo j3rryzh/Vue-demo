@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>document</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="box">
+      <div class="container">
+        <div class="slab content_1">
+          <img src="./image/img_1.jpeg" alt="slab" />
+          <h1>Silver</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="slab content_2">
+          <img src="./image/img_2.jpeg" alt="slab" />
+          <h1>
+            Space <br />
+            Gray
+          </h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="slab content_3">
+          <img src="./image/img_3.jpeg" alt="slab" />
+          <h1>Rose Gold</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="slab content_4">
+          <img src="./image/img_4.jpeg" alt="slab" />
+          <h1>Green</h1>
+        </div>
+      </div>
+      <div class="container">
+        <div class="slab content_5">
+          <img src="./image/img_5.png" alt="slab" />
+          <h1>
+            and <br />
+            Sky Blue
+          </h1>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const $ = (name) => document.querySelector(name);
+    const pic2 = $(".container:nth-child(2)");
+    const pic3 = $(".container:nth-child(3)");
+    const pic4 = $(".container:nth-child(4)");
+    const pic5 = $(".container:nth-child(5)");
+
+    function scrollEvent() {
+      const scrolled =
+        document.documentElement.scrollTop /
+        (document.documentElement.clientHeight * 4);
+      console.log(scrolled);
+      pic2.style.clipPath = `inset(${((0.5 - scrolled) / 0.5) * 100}% 0 0 0)`;
+      pic3.style.clipPath = `inset(${((1 - scrolled) / 0.5) * 100}% 0 0 0)`;
+      pic4.style.clipPath = `inset(${((1.5 - scrolled) / 0.5) * 100}% 0 0 0)`;
+      pic5.style.clipPath = `inset(${((2 - scrolled) / 0.5) * 100}% 0 0 0)`;
+    }
+
+    window.onscroll = () => {
+      scrollEvent();
+    };
+
+    window.onscrollend = () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  </script>
+</html>
