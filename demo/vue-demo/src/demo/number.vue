@@ -20,21 +20,27 @@ export default {
   components: { ScrollList },
   data() {
     return {
-      amount: 88629
+      amount: 889343
     };
   },
   computed: {
     numArr() {
       const str = String(this.amount);
+      // const str = String(Number.parseFloat(this.amount).toFixed(2));
       let options = [];
       for (let i = 0; i < str.length; i++) {
         options.push(parseInt(str[i]));
       }
+
+      options = [0, 0, 0, 0].concat(options);
       return options;
     }
   },
   mounted() {
-    setInterval(() => this.amount++, 10000);
+    setInterval(
+      () => (this.amount = this.amount + Math.floor(Math.random() * 200000)),
+      10000
+    );
   }
 };
 </script>

@@ -76,6 +76,11 @@ const routes = routeOptions.map(route => {
     component: () => import(`@/pages/${route.name}.vue`)
   };
 });
+routes.push({
+  path: "/demo",
+  name: "demo",
+  component: () => import(`@/demo/number.vue`)
+});
 
 const router = new Router({
   routes

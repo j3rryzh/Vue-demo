@@ -6,7 +6,7 @@
   >
     <div class="list_box" :class="{ animate: isShow }">
       <div>0</div>
-      <div v-for="num in 9">{{ num }}</div>
+      <div v-for="num in 9" :key="num">{{ num }}</div>
       <div>0</div>
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
     delay: {
       type: Number,
       default: 1
-    },
+    }
   },
   data() {
     return {
@@ -32,8 +32,7 @@ export default {
     };
   },
   watch: {
-    item(newVal,oldVal) {
-      console.log(newVal);
+    item() {
       this.isShow = true;
     }
   },
@@ -58,9 +57,8 @@ export default {
 
 .animate {
   animation: move 0.3s linear infinite,
-    bounce-into 0.8s calc(var(--delay) * 1s) forwards;
+    bounce-into 0.8s calc(var(--delay) * 0.5s) forwards;
 }
- 
 
 @keyframes move {
   from {
@@ -94,6 +92,4 @@ export default {
     transform: translateY(calc(var(--i) * -9.05%));
   }
 }
-
- 
 </style>
